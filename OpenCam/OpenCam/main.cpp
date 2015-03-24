@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
     cvNamedWindow("Cam",1);                     //打开窗口
     while(1)
     {
-        if(camera.read(img))                    //从摄像头或者文件中抓取并返回一帧,若没有读取到，则不进行图象显示
+        while(!camera.read(img));               //等待图像显示，并从摄像头或者文件中抓取并返回一帧
         imshow("Cam",img);                      //显示图像
         char c = cvWaitKey(30);
-        if(c == 'b')    break;                  //按b退出程序
+        if(c == 'q')    break;                  //按q退出程序
     }
     camera.release();
     cvDestroyWindow("Cam");                     //关闭窗口
